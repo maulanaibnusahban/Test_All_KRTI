@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UAV Ground Station Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <header class="glass-panel">
+            <h1>UAV Command & Control</h1>
+        </header>
+        
+        <div class="grid-container">
+            <!-- Connection Panel -->
+            <section class="glass-panel connection-panel">
+                <h2>Connection</h2>
+                <div class="form-group">
+                    <label for="com-port">COM Port / Device:</label>
+                    <input type="text" id="com-port" placeholder="e.g. COM3 or /dev/ttyUSB0">
+                </div>
+                <div class="form-group">
+                    <label for="baudrate">Baudrate:</label>
+                    <select id="baudrate">
+                        <option value="115200" selected>115200</option>
+                        <option value="57600">57600</option>
+                    </select>
+                </div>
+                <div class="button-group">
+                    <button id="btn-connect" class="btn primary">Connect</button>
+                    <button id="btn-disconnect" class="btn danger" disabled>Disconnect</button>
+                </div>
+                <div class="status">Status: <span id="conn-status" class="status-offline">Offline</span></div>
+            </section>
+
+            <!-- Command Panel -->
+            <section class="glass-panel command-panel">
+                <h2>Command</h2>
+                <div class="button-grid">
+                    <button id="btn-arm" class="btn warning">ARM</button>
+                    <button id="btn-disarm" class="btn danger">DISARM</button>
+                    <button id="btn-plan" class="btn info">PLAN</button>
+                </div>
+            </section>
+
+            <!-- Telemetry Panel -->
+            <section class="glass-panel telemetry-panel">
+                <h2>Telemetry</h2>
+                <div class="telemetry-grid">
+                    <div class="data-box"><span>Roll:</span> <strong id="tel-roll">0.00</strong></div>
+                    <div class="data-box"><span>Pitch:</span> <strong id="tel-pitch">0.00</strong></div>
+                    <div class="data-box"><span>Yaw:</span> <strong id="tel-yaw">0.00</strong></div>
+                    <div class="data-box"><span>Lat:</span> <strong id="tel-lat">0.000000</strong></div>
+                    <div class="data-box"><span>Lon:</span> <strong id="tel-lon">0.000000</strong></div>
+                    <div class="data-box"><span>Alt:</span> <strong id="tel-alt">0.0 m</strong></div>
+                    <div class="data-box"><span>Rel Alt:</span> <strong id="tel-rel-alt">0.0 m</strong></div>
+                    <div class="data-box"><span>VX:</span> <strong id="tel-vx">0.00</strong></div>
+                    <div class="data-box"><span>VY:</span> <strong id="tel-vy">0.00</strong></div>
+                    <div class="data-box"><span>VZ:</span> <strong id="tel-vz">0.00</strong></div>
+                    <div class="data-box"><span>GPS Fix:</span> <strong id="tel-gps">0</strong></div>
+                    <div class="data-box"><span>Satellites:</span> <strong id="tel-sat">0</strong></div>
+                    <div class="data-box"><span>Battery:</span> <strong id="tel-battery">0.0 V</strong></div>
+                    <div class="data-box"><span>Bat %:</span> <strong id="tel-battery-pct">0%</strong></div>
+                    <div class="data-box"><span>Armed:</span> <strong id="tel-armed">False</strong></div>
+                    <div class="data-box"><span>Mode:</span> <strong id="tel-mode">UNKNOWN</strong></div>
+                </div>
+            </section>
+
+            <!-- Photo Panel -->
+            <section class="glass-panel photo-panel">
+                <h2>Photo Stream</h2>
+                <div class="photo-container">
+                    <img id="latest-photo" src="" alt="Waiting for photo..." style="display:none;">
+                    <div id="photo-placeholder">No photo received yet</div>
+                </div>
+                <div class="photo-metadata">
+                    <p>ID: <span id="photo-id">-</span></p>
+                    <p>Lat: <span id="photo-lat">-</span></p>
+                    <p>Lon: <span id="photo-lon">-</span></p>
+                    <p>Time: <span id="photo-time">-</span></p>
+                </div>
+            </section>
+
+            <!-- Serial Monitor Panel -->
+            <section class="glass-panel serial-panel">
+                <h2>Serial Monitor</h2>
+                <div class="serial-controls">
+                    <label><input type="checkbox" id="auto-scroll" checked> Auto Scroll</label>
+                    <button id="btn-clear-log" class="btn secondary small">Clear</button>
+                    <button id="btn-save-log" class="btn secondary small">Save Log</button>
+                </div>
+                <div class="log-container" id="log-output"></div>
+            </section>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
