@@ -1,0 +1,13 @@
+{
+  "name": "uav-ground-station",
+  "version": "1.0.0",
+  "description": "UAV Ground Station - Node.js version",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "serialport": "^12.0.0"
+  }
+}
